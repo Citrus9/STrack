@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_of_items"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal" >
+
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/space" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Csadasd asd asd "
+        android:maxLines="1"
+        android:layout_alignParentTop="true"
+        android:textColor="#222222"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/list_view_spacer"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_weight="0"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Spozywcze:"
+        android:id="@+id/textView59"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15dp"
+        android:layout_below="@+id/item_name"
+        android:layout_alignLeft="@+id/item_name"
+        android:layout_alignStart="@+id/item_name"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Domowe:"
+        android:id="@+id/textView107"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignLeft="@+id/textView59"
+        android:layout_alignStart="@+id/textView59"
+        android:textSize="15dp"
+        android:layout_below="@+id/textView59" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Kosmetyki:"
+        android:id="@+id/textView108"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15dp"
+        android:layout_below="@+id/textView107"
+        android:layout_alignLeft="@+id/textView107"
+        android:layout_alignStart="@+id/textView107" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1/5"
+        android:id="@+id/textView1"
+        android:textColor="#222222"
+        android:layout_alignTop="@+id/textView59"
+        android:layout_toRightOf="@+id/textView59"
+        android:layout_toEndOf="@+id/textView59"
+        android:layout_marginLeft="5dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="2/5"
+        android:id="@+id/textView2"
+        android:textColor="#222222"
+        android:layout_alignTop="@+id/textView107"
+        android:layout_toRightOf="@+id/textView107"
+        android:layout_toEndOf="@+id/textView107"
+        android:layout_marginLeft="5dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="3/5"
+        android:id="@+id/textView3"
+        android:textColor="#222222"
+        android:layout_alignTop="@+id/textView108"
+        android:layout_toRightOf="@+id/textView108"
+        android:layout_toEndOf="@+id/textView108"
+        android:layout_marginLeft="5dp"
+        android:textSize="15dp" />
+
+
+</RelativeLayout>
