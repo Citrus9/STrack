@@ -1,6 +1,8 @@
 package pl.pwr.citrus.strack;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -9,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,7 +29,9 @@ public class StoreDetailsActivity extends AppCompatActivity {
     private TextView grocText;
     private TextView houseText;
     private TextView cosmText;
+    private String location = "";
     private EditText et;
+    private Button map;
     private SeekBar seekGroc;
     private SeekBar seekHouse;
     private SeekBar seekCosm;
@@ -54,6 +60,16 @@ public class StoreDetailsActivity extends AppCompatActivity {
         grocText = (TextView) findViewById(R.id.groceryText);
         houseText = (TextView) findViewById(R.id.houseText);
         cosmText = (TextView) findViewById(R.id.cosmText);
+
+        map = (Button) findViewById(R.id.button3);
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(StoreDetailsActivity.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
         seekGroc = (SeekBar) findViewById(R.id.seekBar);
         seekHouse = (SeekBar) findViewById(R.id.seekBar2);
@@ -120,25 +136,24 @@ public class StoreDetailsActivity extends AppCompatActivity {
         });
 
     if(intentId>0) {
-            getSupportActionBar().setTitle("Edytuj sklep");
-            Cursor cursor = mDbHelper.getStoreRecord(intentId);
-            cursor.moveToFirst();
-            STORE_NAME = cursor.getString(cursor
-                    .getColumnIndexOrThrow(DatabaseAdapter.STORE_NAME));
-            STORE_GROCERY = cursor.getInt(cursor
-                    .getColumnIndexOrThrow(DatabaseAdapter.STORE_GROCERY));
-            STORE_HOUSEOLD = cursor.getInt(cursor
-                    .getColumnIndexOrThrow(DatabaseAdapter.STORE_HOUSEHOLD));
-            STORE_COSMETICS = cursor.getInt(cursor
-                    .getColumnIndexOrThrow(DatabaseAdapter.STORE_COSMETICS));
-
-            et.setText(STORE_NAME);
-            seekGroc.setProgress(STORE_GROCERY-1);
-            seekHouse.setProgress(STORE_HOUSEOLD-1);
-            seekCosm.setProgress(STORE_COSMETICS-1);
+            setupUI();
         }
         else {
             getSupportActionBar().setTitle("Nowy sklep");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(intent!=null) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                location = extras.getString("LOCATION");
+
+                //saveProduct();
+                //setupUI();
+            }
         }
     }
 
@@ -168,6 +183,25 @@ public class StoreDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void setupUI(){
+        getSupportActionBar().setTitle("Edytuj sklep");
+        Cursor cursor = mDbHelper.getStoreRecord(intentId);
+        cursor.moveToFirst();
+        STORE_NAME = cursor.getString(cursor
+                .getColumnIndexOrThrow(DatabaseAdapter.STORE_NAME));
+        STORE_GROCERY = cursor.getInt(cursor
+                .getColumnIndexOrThrow(DatabaseAdapter.STORE_GROCERY));
+        STORE_HOUSEOLD = cursor.getInt(cursor
+                .getColumnIndexOrThrow(DatabaseAdapter.STORE_HOUSEHOLD));
+        STORE_COSMETICS = cursor.getInt(cursor
+                .getColumnIndexOrThrow(DatabaseAdapter.STORE_COSMETICS));
+
+        et.setText(STORE_NAME);
+        seekGroc.setProgress(STORE_GROCERY-1);
+        seekHouse.setProgress(STORE_HOUSEOLD-1);
+        seekCosm.setProgress(STORE_COSMETICS-1);
+    }
+
     private void saveProduct(){
 
 
@@ -176,10 +210,10 @@ public class StoreDetailsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }else {
                 if(intentId>0) {
-                    mDbHelper.updateStore(intentId, et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1);
+                    mDbHelper.updateStore(intentId, et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1, location);
                     onBackPressed();
                 }else {
-                    mDbHelper.insertStore(et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1);
+                    mDbHelper.insertStore(et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1, location);
                     onBackPressed();
                 }
             }

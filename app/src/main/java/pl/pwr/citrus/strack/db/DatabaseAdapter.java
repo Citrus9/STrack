@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-import java.util.HashMap;
-
 import android.util.Log;
 
 public class DatabaseAdapter extends SQLiteOpenHelper {
@@ -18,7 +16,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     private SQLiteDatabase mDb;
 
     private static final String DATABASE_NAME = "stores";
-    private static final int SCHEMA_VERSION = 1; //bez tablicy groupMembers  i groupList
+    private static final int SCHEMA_VERSION = 2; //bez tablicy groupMembers  i groupList
 
     public static final String STORE_KEY_ROWID = "_id";
     public static final String STORE_TABLE = "store_table";
@@ -28,7 +26,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     public static final String STORE_GROCERY = "store_grocery";
     public static final String STORE_HOUSEHOLD = "store_household";
     public static final String STORE_COSMETICS = "store_cosmetics";
-    public static final String STORE_DISTANCE = "store_distance";
+    public static final String STORE_LOCATION = "store_location";
 
     private final String sort_order = "ASC"; // ASC or DESC
 
@@ -38,6 +36,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
                     STORE_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     STORE_DELETED + " INTEGER, " +
                     STORE_POSITION + " INTEGER, " +
+                    STORE_LOCATION + " STRING, " +
                     STORE_NAME + " TEXT, " +
                     STORE_GROCERY + " INTEGER, " +
                     STORE_HOUSEHOLD + " INTEGER, " +
@@ -72,7 +71,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         }
     }
 
-    public void insertStore(String name, int groc, int house, int cosm) {
+    public void insertStore(String name, int groc, int house, int cosm, String location) {
         int item_Position = getMaxMealColumnData();
         ContentValues contentValues = new ContentValues();
 
@@ -82,6 +81,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         contentValues.put(STORE_GROCERY, groc);
         contentValues.put(STORE_HOUSEHOLD, house);
         contentValues.put(STORE_COSMETICS, cosm);
+        contentValues.put(STORE_LOCATION, location);
 
         try {
             if (mDb.insert(STORE_TABLE,null, contentValues) < 0) {
@@ -92,7 +92,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateStore(long productId, String name, int groc, int house, int cosm) {
+    public boolean updateStore(long productId, String name, int groc, int house, int cosm, String location) {
 
         ContentValues contentValues = new ContentValues();
 
@@ -100,6 +100,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         contentValues.put(STORE_GROCERY, groc);
         contentValues.put(STORE_HOUSEHOLD, house);
         contentValues.put(STORE_COSMETICS, cosm);
+        contentValues.put(STORE_LOCATION, location);
 
         return  mDb.update(STORE_TABLE, contentValues, STORE_KEY_ROWID + "=" + productId,
                 null) > 0;

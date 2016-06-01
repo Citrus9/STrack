@@ -4,10 +4,10 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=AE:20:20:8F:50:D3:FD:B0:34:0D:A9:D1:0D:EE:FB:85:03:A5:92:FF%3Bpl.pwr.citrus.busanomalies
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=AE:20:20:8F:50:D3:FD:B0:34:0D:A9:D1:0D:EE:FB:85:03:A5:92:FF%3Bpl.pwr.citrus.strack
 
     You can also add your credentials to an existing key, using this line:
-    AE:20:20:8F:50:D3:FD:B0:34:0D:A9:D1:0D:EE:FB:85:03:A5:92:FF;pl.pwr.citrus.busanomalies
+    AE:20:20:8F:50:D3:FD:B0:34:0D:A9:D1:0D:EE:FB:85:03:A5:92:FF;pl.pwr.citrus.strack
 
     Alternatively, follow the directions here:
     https://developers.google.com/maps/documentation/android/start#get-key
@@ -16,12 +16,6 @@
     string in this file.
     -->
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
-        AIzaSyBj2ZOe-3H-FkCqit9STXkaEJNb1Ax-2UI
+        AIzaSyBOJ1X8VKhCmHK5x1wWNsO0qTfHtV-Ib9k
     </string>
-
-
-    <string name="google_maps_web_services_key" templateMergeStrategy="preserve">
-        AIzaSyA14VlWQLkJwHY-EYKfPDTzwZaMtVcWh1o
-    </string>
-
 </resources>
