@@ -82,7 +82,7 @@
         android:layout_alignStart="@+id/divider2"
         android:layout_alignRight="@+id/divider2"
         android:layout_alignEnd="@+id/divider2"
-        android:max="5" />
+        android:max="4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
         android:layout_alignStart="@+id/divider3"
         android:layout_alignRight="@+id/divider3"
         android:layout_alignEnd="@+id/divider3"
-        android:max="5" />
+        android:max="4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -170,7 +170,7 @@
         android:layout_alignStart="@+id/divider4"
         android:layout_alignRight="@+id/divider4"
         android:layout_alignEnd="@+id/divider4"
-        android:max="5" />
+        android:max="4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,6 +181,40 @@
         android:layout_above="@+id/seekBar3"
         android:layout_alignRight="@+id/divider4"
         android:layout_alignEnd="@+id/divider4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Lokacja"
+        android:id="@+id/textView4"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_below="@+id/seekBar3"/>
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"
+        android:layout_toLeftOf="@+id/space"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_marginRight="8dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Otworz mape"
+        android:id="@+id/button3"
+        android:layout_below="@+id/divider5"
+        android:layout_alignLeft="@+id/divider5"
+        android:layout_alignStart="@+id/divider5"
+        android:layout_alignRight="@+id/divider5"
+        android:layout_alignEnd="@+id/divider5" />
 
 
 </RelativeLayout>

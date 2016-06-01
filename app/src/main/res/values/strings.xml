@@ -3,4 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_stores">StoresActivity</string>
     <string name="title_activity_store_details">StoreDetailsActivity</string>
+    <string name="title_activity_trace">TraceActivity</string>
+
+
 </resources>

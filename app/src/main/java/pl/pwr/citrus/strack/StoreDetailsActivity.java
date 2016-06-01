@@ -65,7 +65,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                grocText.setText(String.valueOf(progress));
+                grocText.setText(String.valueOf(progress+1));
             }
 
             @Override
@@ -85,7 +85,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                houseText.setText(String.valueOf(progress));
+                houseText.setText(String.valueOf(progress+1));
             }
 
             @Override
@@ -105,7 +105,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                cosmText.setText(String.valueOf(progress));
+                cosmText.setText(String.valueOf(progress+1));
             }
 
             @Override
@@ -133,9 +133,9 @@ public class StoreDetailsActivity extends AppCompatActivity {
                     .getColumnIndexOrThrow(DatabaseAdapter.STORE_COSMETICS));
 
             et.setText(STORE_NAME);
-            seekGroc.setProgress(STORE_GROCERY);
-            seekHouse.setProgress(STORE_HOUSEOLD);
-            seekCosm.setProgress(STORE_COSMETICS);
+            seekGroc.setProgress(STORE_GROCERY-1);
+            seekHouse.setProgress(STORE_HOUSEOLD-1);
+            seekCosm.setProgress(STORE_COSMETICS-1);
         }
         else {
             getSupportActionBar().setTitle("Nowy sklep");
@@ -176,10 +176,10 @@ public class StoreDetailsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }else {
                 if(intentId>0) {
-                    mDbHelper.updateStore(intentId, et.getText().toString(), seekGroc.getProgress(), seekHouse.getProgress(), seekCosm.getProgress());
+                    mDbHelper.updateStore(intentId, et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1);
                     onBackPressed();
                 }else {
-                    mDbHelper.insertStore(et.getText().toString(), seekGroc.getProgress(), seekHouse.getProgress(), seekCosm.getProgress());
+                    mDbHelper.insertStore(et.getText().toString(), seekGroc.getProgress()+1, seekHouse.getProgress()+1, seekCosm.getProgress()+1);
                     onBackPressed();
                 }
             }
