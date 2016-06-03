@@ -16,7 +16,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     private SQLiteDatabase mDb;
 
     private static final String DATABASE_NAME = "stores";
-    private static final int SCHEMA_VERSION = 2; //bez tablicy groupMembers  i groupList
+    private static final int SCHEMA_VERSION = 3; //bez tablicy groupMembers  i groupList
 
     public static final String STORE_KEY_ROWID = "_id";
     public static final String STORE_TABLE = "store_table";
@@ -36,7 +36,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
                     STORE_KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     STORE_DELETED + " INTEGER, " +
                     STORE_POSITION + " INTEGER, " +
-                    STORE_LOCATION + " STRING, " +
+                    STORE_LOCATION + " TEXT, " +
                     STORE_NAME + " TEXT, " +
                     STORE_GROCERY + " INTEGER, " +
                     STORE_HOUSEHOLD + " INTEGER, " +

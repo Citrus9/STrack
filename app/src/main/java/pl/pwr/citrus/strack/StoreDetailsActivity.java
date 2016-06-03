@@ -29,6 +29,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
     private TextView grocText;
     private TextView houseText;
     private TextView cosmText;
+    private TextView locText;
     private String location = "";
     private EditText et;
     private Button map;
@@ -40,6 +41,9 @@ public class StoreDetailsActivity extends AppCompatActivity {
     private int STORE_GROCERY;
     private int STORE_HOUSEOLD;
     private int STORE_COSMETICS;
+    private String STORE_LOCATION;
+
+    public final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +64,32 @@ public class StoreDetailsActivity extends AppCompatActivity {
         grocText = (TextView) findViewById(R.id.groceryText);
         houseText = (TextView) findViewById(R.id.houseText);
         cosmText = (TextView) findViewById(R.id.cosmText);
+        locText = (TextView) findViewById(R.id.location);
 
         map = (Button) findViewById(R.id.button3);
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(StoreDetailsActivity.this, MapsActivity.class);
-                startActivity(i);
+                if(intentId>0){
+                    Cursor cursor = mDbHelper.getStoreRecord(intentId);
+                    cursor.moveToFirst();
+                    String s = cursor.getString(cursor
+                            .getColumnIndexOrThrow(DatabaseAdapter.STORE_LOCATION)).toString();
+                    Bundle extras = new Bundle();
+                    extras.putString("POS", s);
+//                    extras.putString(key, value);
+                    i.putExtras(extras);
+//                    i.putExtra("POS", s);
+                    Log.i("POSITION", intentId + "   " + cursor.getString(cursor
+                            .getColumnIndexOrThrow(DatabaseAdapter.STORE_LOCATION)));
+                }
+                else
+                    i.putExtra("POS", "");
+
+                startActivityForResult(new Intent(StoreDetailsActivity.this, MapsActivity.class), REQUEST_CODE);
             }
         });
 
@@ -195,8 +217,11 @@ public class StoreDetailsActivity extends AppCompatActivity {
                 .getColumnIndexOrThrow(DatabaseAdapter.STORE_HOUSEHOLD));
         STORE_COSMETICS = cursor.getInt(cursor
                 .getColumnIndexOrThrow(DatabaseAdapter.STORE_COSMETICS));
+        STORE_LOCATION = cursor.getString(cursor
+                .getColumnIndexOrThrow(DatabaseAdapter.STORE_LOCATION));
 
         et.setText(STORE_NAME);
+        locText.setText(STORE_LOCATION);
         seekGroc.setProgress(STORE_GROCERY-1);
         seekHouse.setProgress(STORE_HOUSEOLD-1);
         seekCosm.setProgress(STORE_COSMETICS-1);
