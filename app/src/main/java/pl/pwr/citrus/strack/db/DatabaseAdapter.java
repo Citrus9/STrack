@@ -177,7 +177,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
         return (int) stmt.simpleQueryForLong();
     }
 
-    public Cursor getAllMealRecords() {
+    public Cursor getAllStoreRecords() {
 
         return mDb.query(STORE_TABLE, null,
                 STORE_DELETED + "=" + 1, null, null, null,

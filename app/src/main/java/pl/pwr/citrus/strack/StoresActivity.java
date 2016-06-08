@@ -69,7 +69,7 @@ public class StoresActivity extends AppCompatActivity {
         };
 
         // pull all items from database
-        Cursor cursor = mDbHelper.getAllMealRecords();
+        Cursor cursor = mDbHelper.getAllStoreRecords();
 
         mMAdapter = new MAdapter(this, R.layout.item_store, null, columns, ids,
                 0);

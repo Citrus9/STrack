@@ -29,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        Button bTrace = (Button) findViewById(R.id.button4);
+        bTrace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TraceActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
