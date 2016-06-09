@@ -10,6 +10,10 @@ import android.database.sqlite.SQLiteStatement;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import pl.pwr.citrus.strack.AHP.Store;
+
 public class DatabaseAdapter extends SQLiteOpenHelper {
 
     private static DatabaseAdapter sSingleton;
@@ -190,5 +194,25 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
                 .compileStatement("SELECT "+ STORE_NAME +" FROM "+ STORE_TABLE + " WHERE " + STORE_KEY_ROWID + " = " +store_id);
 
         return (String) stmt.simpleQueryForString();
+    }
+
+    public ArrayList<Store> getAllStoreList(){
+        ArrayList<Store> stores = new ArrayList<Store>();
+        String query = "SELECT "+ STORE_NAME + ", "+ STORE_GROCERY + ", "
+                + STORE_HOUSEHOLD +", "+STORE_COSMETICS+" FROM "+STORE_TABLE+" WHERE "+STORE_DELETED+" = 1;";
+        mDb = sSingleton.getWritableDatabase();
+        Cursor c = mDb.rawQuery(query, null);
+        if(c.moveToFirst()){
+            do{
+                Store s = new Store();
+                s.setName(c.getString(0));
+                s.setGrocery(Integer.parseInt(c.getString(1)));
+                s.setHousehold(Integer.parseInt(c.getString(2)));
+                s.setCosmetic(Integer.parseInt(c.getString(3)));
+                stores.add(s);
+            }while (c.moveToNext());
+        }
+        mDb.close();
+        return stores;
     }
 }
