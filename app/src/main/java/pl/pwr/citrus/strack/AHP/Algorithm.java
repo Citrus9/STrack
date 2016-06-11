@@ -16,8 +16,13 @@ public class Algorithm {
     private double[] sKriterion, sGrocery, sHousehold, sCosmetics;
     private boolean consistent;
 
-    public Algorithm(double groceryToHousehold, double groceryToCosmetic, double householdToCosmetic) {
+    public Algorithm(int groceryToHousehold, int groceryToCosmetic, int householdToCosmetic) {
         kriterionMatrix = new double[3][3];
+
+        groceryToCosmetic = translateToOdd(groceryToCosmetic);
+        groceryToHousehold = translateToOdd(groceryToHousehold);
+        householdToCosmetic = translateToOdd(householdToCosmetic);
+
         kriterionMatrix[0][0] = 1;
         kriterionMatrix[0][1] = groceryToHousehold;
         kriterionMatrix[0][2] = groceryToCosmetic;
