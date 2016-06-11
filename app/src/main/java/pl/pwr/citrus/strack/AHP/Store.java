@@ -3,9 +3,10 @@ package pl.pwr.citrus.strack.AHP;
 /**
  * Created by Luiza on 2016-06-09.
  */
-public class Store {
+public class Store implements Comparable<Store> {
 
     private String name;
+    private double rank;
 
     public int getGrocery() {
         return grocery;
@@ -39,5 +40,18 @@ public class Store {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setRank(double rank){
+        this.rank = rank;
+    }
+
+    public double getRank(){
+        return rank;
+    }
+
+    @Override
+    public int compareTo(Store s) {
+        return this.rank<s.getRank()?1:-1;
     }
 }
