@@ -45,7 +45,42 @@ public class Algorithm {
         checkConsistency();
         calculateRank(stores);
         sort(stores);
-        return stores;
+        ArrayList<Store> result = sellect(stores);
+        return result;
+    }
+
+    private ArrayList<Store> sellect(ArrayList<Store> stores) {
+        boolean grocery;
+        boolean household;
+        boolean cosmetics;
+        ArrayList<Store> result = new ArrayList<Store>();
+        Store s = stores.get(0);
+        result.add(stores.get(0));
+        grocery = s.getGrocery()>1;
+        household = s.getHousehold()>1;
+        cosmetics = s.getCosmetic()>1;
+        boolean stop = grocery&&household&&cosmetics;
+        for (int i = 1; i < stores.size()&&!stop; i++) {
+            s= stores.get(i);
+            boolean add = false;
+            if(!grocery){
+                grocery = s.getGrocery()>1;
+                add = true;
+            }
+            if(!household){
+                household = s.getHousehold()>1;
+                add = true;
+            }
+            if(!cosmetics){
+                cosmetics = s.getCosmetic()>1;
+                add = true;
+            }
+            if(add){
+                result.add(s);
+            }
+            stop = grocery&&household&&cosmetics;
+        }
+        return result;
     }
 
     public boolean IsConsistent(){
