@@ -7,6 +7,15 @@ public class Store implements Comparable<Store> {
 
     private String name;
     private double rank;
+    private String lokalization;
+
+    public String getLokalization() {
+        return lokalization;
+    }
+
+    public void setLokalization(String lokalization) {
+        this.lokalization = lokalization;
+    }
 
     public int getGrocery() {
         return grocery;

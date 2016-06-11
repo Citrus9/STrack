@@ -199,7 +199,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
     public ArrayList<Store> getAllStoreList(){
         ArrayList<Store> stores = new ArrayList<Store>();
         String query = "SELECT "+ STORE_NAME + ", "+ STORE_GROCERY + ", "
-                + STORE_HOUSEHOLD +", "+STORE_COSMETICS+" FROM "+STORE_TABLE+" WHERE "+STORE_DELETED+" = 1;";
+                + STORE_HOUSEHOLD +", "+STORE_COSMETICS+", "+STORE_LOCATION+" FROM "+STORE_TABLE+" WHERE "+STORE_DELETED+" = 1;";
         mDb = sSingleton.getWritableDatabase();
         Cursor c = mDb.rawQuery(query, null);
         if(c.moveToFirst()){
@@ -209,6 +209,7 @@ public class DatabaseAdapter extends SQLiteOpenHelper {
                 s.setGrocery(Integer.parseInt(c.getString(1)));
                 s.setHousehold(Integer.parseInt(c.getString(2)));
                 s.setCosmetic(Integer.parseInt(c.getString(3)));
+                s.setLokalization(c.getString(4));
                 stores.add(s);
             }while (c.moveToNext());
         }
