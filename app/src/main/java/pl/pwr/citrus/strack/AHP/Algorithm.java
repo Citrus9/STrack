@@ -43,6 +43,10 @@ public class Algorithm {
         return stores;
     }
 
+    public boolean IsConsistent(){
+        return consistent;
+    }
+
     private void sort(ArrayList<Store> stores) {
         Collections.sort(stores);
     }
